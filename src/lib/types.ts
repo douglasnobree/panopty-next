@@ -9,3 +9,13 @@ export interface CitysData {
   analise_count: number;
   power_bi_dashboards_count: number;
 }
+
+export interface AllIpAssets {
+  id: string;
+  cities_id: string;
+  name: string;
+  status: string;
+  ano: string;
+  mes: string;
+  filePath?: string;
+}

@@ -4,7 +4,7 @@ import { usePowerBI } from '@/app/hooks/usePowerBI';
 import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { FileText, Network, FileCheck, Monitor, ArrowLeft } from 'lucide-react';
+import { FileText, Network, FileCheck, Monitor } from 'lucide-react';
 
 interface MunicipioLayoutProps {
   children: React.ReactNode;
@@ -24,17 +24,13 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
       <div className='w-64 bg-card border-r border-[var(--border)] flex flex-col shadow-sm'>
         <div className='p-4 border-b border-[var(--border)]'>
           <Link href={`/dashboard/municipio/${id}`}>
-            <Button
-              variant='ghost'
-              className='w-full justify-start h-10 px-4 mb-2 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'>
-              <ArrowLeft className='mr-3 h-4 w-4 text-[var(--blue-9)]' />
-              Voltar ao Dashboard
-            </Button>
+            <div className='cursor-pointer hover:bg-[var(--blue-1)] p-2 rounded mb-2'>
+              <h2 className='text-lg font-semibold text-[var(--slate-12)]'>
+                Dashboard
+              </h2>
+              <p className='text-sm text-[var(--slate-11)]'>Município {id}</p>
+            </div>
           </Link>
-          <h2 className='text-lg font-semibold text-[var(--slate-12)]'>
-            Dashboard
-          </h2>
-          <p className='text-sm text-[var(--slate-11)]'>Município {id}</p>
         </div>
 
         <div className='flex-1 p-4 space-y-2'>
