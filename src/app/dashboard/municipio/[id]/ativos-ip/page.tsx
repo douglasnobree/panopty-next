@@ -85,50 +85,46 @@ export default function RegisterIP({ params }: RegisterIPProps) {
   };
 
   return (
-    <>
-      <div className='min-h-screen bg-gray-50 p-6'>
-        <div className='max-w-4xl mx-auto'>
-          <Card>
-            <CardHeader className='flex flex-row items-center justify-between'>
-              <div>
-                <CardTitle className='text-2xl font-bold'>
-                  Ativos de IP
-                </CardTitle>
-                <p className='text-gray-600 mt-2'>
-                  Insira abaixo o arquivo Excel dos ativos de IP.
-                </p>
-              </div>
-              <Button variant='ghost' size='icon' onClick={() => router.back()}>
-                <X className='h-6 w-6' />
-              </Button>
-            </CardHeader>
-            <CardContent className='space-y-6'>
-              <div
-                id='dropzone'
-                className='dropzone border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors border-gray-300 hover:border-gray-400'>
-                <MicrosoftExcelLogo className='mx-auto h-16 w-16 text-gray-400 mb-4' />
-                <p className='text-lg text-gray-600'>
-                  Clique ou arraste um arquivo Excel (.xlsx ou .xls) para aqui
-                </p>
-              </div>
+    <div className='min-h-screen bg-gray-50 p-6'>
+      <div className='max-w-4xl mx-auto'>
+        <Card>
+          <CardHeader className='flex flex-row items-center justify-between'>
+            <div>
+              <CardTitle className='text-2xl font-bold'>Ativos de IP</CardTitle>
+              <p className='text-gray-600 mt-2'>
+                Insira abaixo o arquivo Excel dos ativos de IP.
+              </p>
+            </div>
+            <Button variant='ghost' size='icon' onClick={() => router.back()}>
+              <X className='h-6 w-6' />
+            </Button>
+          </CardHeader>
+          <CardContent className='space-y-6'>
+            <div
+              id='dropzone'
+              className='dropzone border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors border-gray-300 hover:border-gray-400'>
+              <MicrosoftExcelLogo className='mx-auto h-16 w-16 text-gray-400 mb-4' />
+              <p className='text-lg text-gray-600'>
+                Clique ou arraste um arquivo Excel (.xlsx ou .xls) para aqui
+              </p>
+            </div>
 
-              <Button
-                onClick={handleRegisterData}
-                disabled={!uploadComplete || loading}
-                className='w-full'>
-                {loading ? (
-                  <div className='flex items-center gap-2'>
-                    <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-white'></div>
-                    Carregando...
-                  </div>
-                ) : (
-                  'Finalizar cadastro'
-                )}
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+            <Button
+              onClick={handleRegisterData}
+              disabled={!uploadComplete || loading}
+              className='w-full'>
+              {loading ? (
+                <div className='flex items-center gap-2'>
+                  <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-white'></div>
+                  Carregando...
+                </div>
+              ) : (
+                'Finalizar cadastro'
+              )}
+            </Button>
+          </CardContent>
+        </Card>
       </div>
-    </>
+    </div>
   );
 }
