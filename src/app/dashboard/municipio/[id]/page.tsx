@@ -25,7 +25,7 @@ export default function DashboardBiPage() {
   }
 
   return (
-    <div className='flex h-screen w-full bg-background'>
+    <div className='flex h-screen w-full'>
       {/* Menu Lateral */}
       <div className='w-64 bg-card border-r border-[var(--border)] flex flex-col shadow-sm'>
         <div className='p-4 border-b border-[var(--border)]'>

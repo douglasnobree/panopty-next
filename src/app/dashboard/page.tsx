@@ -145,7 +145,7 @@ function Dashboard() {
   const loading = isCountiesLoading || isStatsLoading || isSearching;
 
   return (
-    <div className='min-h-screen bg-background'>
+    <div className='bg-background'>
       <main
         className='container mx-auto px-4 py-6 space-y-6'
         style={{ maxWidth: 'var(--max-width)' }}>
