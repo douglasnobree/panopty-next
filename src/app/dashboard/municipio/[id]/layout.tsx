@@ -64,14 +64,15 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
               Projetos de Lei
             </Button>
           </Link>
-
-          <Button
-            variant='ghost'
-            className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
-            onClick={() => console.log('Quadro de IP')}>
-            <Monitor className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
-            Quadro de IP
-          </Button>
+          <Link href={`/dashboard/municipio/${id}/lampadas`}>
+            <Button
+              variant='ghost'
+              className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
+              onClick={() => console.log('Quadro de IP')}>
+              <Monitor className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
+              Quadro de IP
+            </Button>
+          </Link>
         </div>
       </div>
 
