@@ -16,7 +16,7 @@ const navigationItems = [
   { name: 'Dashboard', href: '/dashboard' },
   { name: 'Diagnóstico', href: '/diagnostico' },
   { name: 'Gestores', href: '/gestores' },
-  { name: 'Módulo tarifário', href: '/modulo-tarifario' },
+  { name: 'Módulo tarifário', href: '/tarifario' },
 ];
 
 export function Header() {
