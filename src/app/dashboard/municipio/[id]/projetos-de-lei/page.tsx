@@ -140,7 +140,7 @@ export default function CityLaws({ params }: CityLawsProps) {
                             }
                             className={
                               bill.status === 'ativo'
-                                ? 'bg-[#e2f5e5] text-[#15803d] border border-[#15803d]'
+                                ? 'bg-[var(--green-3)] text-[var(--green-12)] border border-[var(--green-12)]'
                                 : 'bg-[var(--slate-3)] text-[var(--slate-11)]'
                             }>
                             {bill.status || 'Disponível'}

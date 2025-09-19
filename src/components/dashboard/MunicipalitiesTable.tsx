@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table';
 import { ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import type { CitysData } from '@/app/hooks/useDashboardData'; 
+import type { CitysData } from '@/app/hooks/useDashboardData';
 
 interface MunicipalitiesTableProps {
   cities: CitysData[];
@@ -87,7 +87,7 @@ export function MunicipalitiesTable({
             </TableCell>
             <TableCell>
               {city.power_bi_dashboards_count > 0 ? (
-                <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#e2f5e5] text-[#15803d] border border-[#15803d]'>
+                <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--green-3)] text-[var(--green-12)] border border-[var(--green-12)]'>
                   Disponível
                 </span>
               ) : (
