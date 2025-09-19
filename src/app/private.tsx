@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { isAuthenticated } from '@/lib/auth';
 
@@ -8,15 +8,26 @@ interface PrivateRouteProps {
 
 export function PrivateRoute({ children }: PrivateRouteProps) {
   const router = useRouter();
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    const auth = isAuthenticated();
+    setIsAuth(auth);
+    setIsAuthChecked(true);
+
+    if (!auth) {
       router.push('/login');
     }
   }, [router]);
 
-  if (!isAuthenticated()) {
+  if (!isAuthChecked) {
+    return <div>Carregando...</div>;
+  }
+
+  if (!isAuth) {
     return <div>Redirecionando...</div>;
   }
+
   return <>{children}</>;
 }
