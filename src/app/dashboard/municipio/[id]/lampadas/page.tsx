@@ -54,16 +54,14 @@ const CityLamps = () => {
               tableHeaders={[]}
               addButtonEvent={() => {}}
               addButton=''>
-              <TableBody>
-                <TableRow>
-                  <TableCell
-                    colSpan={4}
-                    className='text-center py-8 text-[var(--slate-11)]'>
-                    Nenhum cálculo de QIP encontrado. Clique em "Calcular
-                    potência do QIP" para adicionar um novo.
-                  </TableCell>
-                </TableRow>
-              </TableBody>
+              <TableRow>
+                <TableCell
+                  colSpan={4}
+                  className='text-center py-8 text-[var(--slate-11)]'>
+                  Nenhum cálculo de QIP encontrado. Clique em "Calcular potência
+                  do QIP" para adicionar um novo.
+                </TableCell>
+              </TableRow>
             </Table>
           </CardContent>
         </Card>
