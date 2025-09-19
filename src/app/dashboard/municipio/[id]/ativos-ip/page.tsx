@@ -40,7 +40,7 @@ export default function CityIpAssets({ params }: CityIpAssetsProps) {
   const totalAssets = ipAssets?.length || 0
   const activeAssets = ipAssets?.filter((asset) => asset.status === "Ativo").length || 0
   const currentYear = new Date().getFullYear()
-  const currentYearAssets = ipAssets?.filter((asset) => asset.ano === currentYear.toString()).length || 0
+  const currentYearAssets = ipAssets?.filter((asset) => asset.year === currentYear.toString()).length || 0
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -139,8 +139,8 @@ export default function CityIpAssets({ params }: CityIpAssetsProps) {
                             {ipAsset.status}
                           </Badge>
                         </td>
-                        <td className="py-3 px-4 text-gray-600">{ipAsset.ano}</td>
-                        <td className="py-3 px-4 text-gray-600">{ipAsset.mes}</td>
+                        <td className="py-3 px-4 text-gray-600">{ipAsset.year}</td>
+                        <td className="py-3 px-4 text-gray-600">{ipAsset.month}</td>
                         <td className="py-3 px-4">
                           <Button variant="ghost" size="sm" className="text-orange-600 hover:text-orange-700">
                             Ver detalhes

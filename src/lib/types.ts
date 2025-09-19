@@ -15,8 +15,8 @@ export interface AllIpAssets {
   cities_id: string;
   name: string;
   status: string;
-  ano: string;
-  mes: string;
+  year: string;
+  month: string;
   filePath?: string;
 }
 
