@@ -33,7 +33,20 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
           </Link>
         </div>
 
-        <div className='flex-1 p-4 space-y-2'>
+        <Link href={`/dashboard/municipio/${id}`}>
+          <Button
+            variant='ghost'
+            className={`w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)] ${
+              isDashboardActive
+                ? 'bg-[var(--blue-3)] text-[var(--blue-11)]'
+                : ''
+            }`}>
+            <FileText className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
+            Visão Geral
+          </Button>
+        </Link>
+
+        <Link href={`/dashboard/municipio/${id}/analises`}>
           <Button
             variant='ghost'
             className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
@@ -41,6 +54,8 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
             <FileText className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
             Análises
           </Button>
+        </Link>
+
 
           <Link href={`/dashboard/municipio/${id}/ativos-ip`}>
             <Button
@@ -73,7 +88,6 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
               Quadro de IP
             </Button>
           </Link>
-        </div>
       </div>
 
       {/* Conteúdo Principal */}
