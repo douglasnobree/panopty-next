@@ -19,3 +19,12 @@ export interface AllIpAssets {
   mes: string;
   filePath?: string;
 }
+
+export interface Bill {
+  id: string;
+  cities_id: string;
+  name: string;
+  status: string;
+  ano: string;
+  filePath?: string;
+}

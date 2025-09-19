@@ -55,13 +55,15 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
             </Button>
           </Link>
 
-          <Button
-            variant='ghost'
-            className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
-            onClick={() => console.log('Projetos de Lei')}>
-            <FileCheck className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
-            Projetos de Lei
-          </Button>
+          <Link href={`/dashboard/municipio/${id}/projetos-de-lei`}>
+            <Button
+              variant='ghost'
+              className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
+              onClick={() => console.log('Projetos de Lei')}>
+              <FileCheck className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
+              Projetos de Lei
+            </Button>
+          </Link>
 
           <Button
             variant='ghost'
