@@ -5,6 +5,7 @@ import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { FileText, Network, FileCheck, Monitor } from 'lucide-react';
+import { Header } from '@/components/Header';
 
 interface MunicipioLayoutProps {
   children: React.ReactNode;
@@ -16,14 +17,16 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
   const id = params.id as string;
 
   const isActive = (href: string) => pathname === href;
-  const isDashboardActive = pathname === `/dashboard/municipio/${id}`;
+  const isDashboardActive = pathname === `/municipio/${id}`;
 
   return (
+    <>
+    <Header />
     <div className='flex h-screen w-full'>
       {/* Menu Lateral */}
       <div className='w-64 bg-card border-r border-[var(--border)] flex flex-col shadow-sm'>
         <div className='p-4 border-b border-[var(--border)]'>
-          <Link href={`/dashboard/municipio/${id}`}>
+          <Link href={`/municipio/${id}`}>
             <div className='cursor-pointer hover:bg-[var(--blue-1)] p-2 rounded mb-2'>
               <h2 className='text-lg font-semibold text-[var(--slate-12)]'>
                 Dashboard
@@ -33,7 +36,7 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
           </Link>
         </div>
 
-        <Link href={`/dashboard/municipio/${id}`}>
+        <Link href={`/municipio/${id}`}>
           <Button
             variant='ghost'
             className={`w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)] ${
@@ -46,7 +49,7 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
           </Button>
         </Link>
 
-        <Link href={`/dashboard/municipio/${id}/analises`}>
+        <Link href={`/municipio/${id}/analises`}>
           <Button
             variant='ghost'
             className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
@@ -56,11 +59,11 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
           </Button>
         </Link>
 
-        <Link href={`/dashboard/municipio/${id}/ativos-ip`}>
+        <Link href={`/municipio/${id}/ativos-ip`}>
           <Button
             variant='ghost'
             className={`w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)] ${
-              isActive(`/dashboard/municipio/${id}/ativos-ip`)
+              isActive(`/municipio/${id}/ativos-ip`)
                 ? 'bg-[var(--blue-3)] text-[var(--blue-11)]'
                 : ''
             }`}>
@@ -69,7 +72,7 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
           </Button>
         </Link>
 
-        <Link href={`/dashboard/municipio/${id}/projetos-de-lei`}>
+        <Link href={`/municipio/${id}/projetos-de-lei`}>
           <Button
             variant='ghost'
             className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
@@ -78,7 +81,7 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
             Projetos de Lei
           </Button>
         </Link>
-        <Link href={`/dashboard/municipio/${id}/lampadas`}>
+        <Link href={`/municipio/${id}/lampadas`}>
           <Button
             variant='ghost'
             className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
@@ -92,5 +95,6 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
       {/* Conteúdo Principal */}
       <div className='flex-1 relative'>{children}</div>
     </div>
+    </>
   );
 }

@@ -60,7 +60,7 @@ export function MunicipalitiesTable({
           <TableRow
             key={city.id}
             className='cursor-pointer hover:bg-[var(--blue-1)]'
-            onClick={() => router.push(`/dashboard/municipio/${city.id}`)}>
+            onClick={() => router.push(`/municipio/${city.id}`)}>
             <TableCell>
               <Checkbox
                 checked={selectedItems.includes(city.id.toString())}
