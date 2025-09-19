@@ -28,3 +28,34 @@ export interface Bill {
   ano: string;
   filePath?: string;
 }
+
+export interface Option {
+  label: string;
+  value: string;
+}
+
+export interface AllAnalyses {
+  // Add properties as needed
+  id: string;
+  // etc.
+}
+
+export interface CountieInfo {
+  name: string;
+  // Add other properties
+}
+
+export interface AllBills {
+  id: string;
+  name: string;
+  year: string;
+  // etc.
+}
+
+export interface TariffModule {
+  id: string;
+  rate_value: string;
+  rate_type: { type: string };
+  month: string;
+  year: string;
+}

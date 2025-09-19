@@ -1,6 +1,6 @@
 'use client';
 
-import { usePowerBI } from '@/hooks/usePowerBI'; 
+import { usePowerBI } from '@/hooks/usePowerBI';
 import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -56,38 +56,37 @@ export default function MunicipioLayout({ children }: MunicipioLayoutProps) {
           </Button>
         </Link>
 
+        <Link href={`/dashboard/municipio/${id}/ativos-ip`}>
+          <Button
+            variant='ghost'
+            className={`w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)] ${
+              isActive(`/dashboard/municipio/${id}/ativos-ip`)
+                ? 'bg-[var(--blue-3)] text-[var(--blue-11)]'
+                : ''
+            }`}>
+            <Network className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
+            Ativos de IP
+          </Button>
+        </Link>
 
-          <Link href={`/dashboard/municipio/${id}/ativos-ip`}>
-            <Button
-              variant='ghost'
-              className={`w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)] ${
-                isActive(`/dashboard/municipio/${id}/ativos-ip`)
-                  ? 'bg-[var(--blue-3)] text-[var(--blue-11)]'
-                  : ''
-              }`}>
-              <Network className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
-              Ativos de IP
-            </Button>
-          </Link>
-
-          <Link href={`/dashboard/municipio/${id}/projetos-de-lei`}>
-            <Button
-              variant='ghost'
-              className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
-              onClick={() => console.log('Projetos de Lei')}>
-              <FileCheck className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
-              Projetos de Lei
-            </Button>
-          </Link>
-          <Link href={`/dashboard/municipio/${id}/lampadas`}>
-            <Button
-              variant='ghost'
-              className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
-              onClick={() => console.log('Quadro de IP')}>
-              <Monitor className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
-              Quadro de IP
-            </Button>
-          </Link>
+        <Link href={`/dashboard/municipio/${id}/projetos-de-lei`}>
+          <Button
+            variant='ghost'
+            className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
+            onClick={() => console.log('Projetos de Lei')}>
+            <FileCheck className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
+            Projetos de Lei
+          </Button>
+        </Link>
+        <Link href={`/dashboard/municipio/${id}/lampadas`}>
+          <Button
+            variant='ghost'
+            className='w-full justify-start h-12 px-4 hover:bg-[var(--blue-1)] text-[var(--slate-12)]'
+            onClick={() => console.log('Quadro de IP')}>
+            <Monitor className='mr-3 h-5 w-5 text-[var(--blue-9)]' />
+            Quadro de IP
+          </Button>
+        </Link>
       </div>
 
       {/* Conteúdo Principal */}
