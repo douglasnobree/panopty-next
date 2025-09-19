@@ -145,14 +145,16 @@ function Dashboard() {
   const loading = isCountiesLoading || isStatsLoading || isSearching;
 
   return (
-    <div className='bg-background'>
+    <div className='min-h-screen bg-gradient-to-br from-[var(--slate-1)] via-background to-[var(--slate-2)]'>
       <main
-        className='container mx-auto px-4 py-6 space-y-6'
+        className='container mx-auto px-4 py-8 space-y-8'
         style={{ maxWidth: 'var(--max-width)' }}>
-        <Card className='shadow-sm border border-[var(--border)]'>
-          <CardHeader>
-            <CardTitle className='text-xl font-semibold text-[var(--slate-12)]'>
-              Painel de controle
+        <Card
+          className='shadow-lg border-0 bg-gradient-to-r from-white to-[var(--slate-1)] backdrop-blur-sm animate-fade-in-up'
+          style={{ animationDelay: '0.1s' }}>
+          <CardHeader className='pb-4'>
+            <CardTitle className='text-xl font-semibold text-[var(--slate-12)] flex items-center gap-2'>
+              Estatísticas Gerais
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-6'>
@@ -166,52 +168,97 @@ function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className='shadow-sm border border-[var(--border)]'>
-          <CardHeader>
-            <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
-              <CardTitle className='text-xl font-semibold text-[var(--slate-12)]'>
-                Municípios
-              </CardTitle>
-              <div className='flex flex-col sm:flex-row gap-2'>
+        {/* Municipalities Section */}
+        <Card
+          className='shadow-lg border-0 bg-gradient-to-r from-white to-[var(--slate-1)] backdrop-blur-sm animate-fade-in-up'
+          style={{ animationDelay: '0.2s' }}>
+          <CardHeader className='border-b border-[var(--slate-4)] bg-gradient-to-r from-[var(--slate-1)] to-transparent'>
+            <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6'>
+              <div>
+                <CardTitle className='text-2xl font-bold text-[var(--slate-12)] mb-1'>
+                  Municípios Cadastrados
+                </CardTitle>
+                <p className='text-[var(--slate-11)]'>
+                  Gerencie e monitore todos os municípios do sistema
+                </p>
+              </div>
+              <div className='flex flex-col sm:flex-row gap-3'>
                 <SearchInput
-                  placeholder='Buscar por um município'
+                  placeholder='Buscar município...'
                   value={searchValue}
                   onValueChange={setSearchValue}
                   onSearch={handleSearch}
-                  className='sm:w-64'
+                  className='sm:w-80'
                 />
                 <Button
                   onClick={handleAddNew}
-                  className='flex items-center gap-2 bg-[var(--blue-9)] hover:bg-[var(--blue-10)] text-white'>
+                  className='flex items-center gap-2 bg-gradient-to-r from-[var(--blue-9)] to-[var(--blue-10)] hover:from-[var(--blue-10)] hover:to-[var(--blue-9)] text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
                   <Plus className='h-4 w-4' />
-                  Novo município
+                  Novo Município
                 </Button>
               </div>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className='p-6'>
             {loading ? (
-              <div className='flex justify-center py-8'>
-                <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--blue-9)]'></div>
+              <div className='flex flex-col items-center justify-center py-16 animate-pulse-slow'>
+                <div className='relative'>
+                  <div className='animate-spin rounded-full h-16 w-16 border-4 border-[var(--blue-9)] border-t-transparent'></div>
+                  <div
+                    className='absolute inset-0 rounded-full border-4 border-[var(--blue-10)] border-t-transparent animate-spin'
+                    style={{
+                      animationDirection: 'reverse',
+                      animationDuration: '1.5s',
+                    }}></div>
+                </div>
+                <p className='text-[var(--slate-11)] font-medium mt-4'>
+                  Carregando dados...
+                </p>
+                <p className='text-[var(--slate-10)] text-sm mt-1'>
+                  Aguarde enquanto processamos as informações
+                </p>
+              </div>
+            ) : cities.length === 0 ? (
+              <div className='text-center py-16'>
+                <div className='text-6xl mb-4'>🏙️</div>
+                <h3 className='text-xl font-semibold text-[var(--slate-12)] mb-2'>
+                  Nenhum município encontrado
+                </h3>
+                <p className='text-[var(--slate-11)] mb-6'>
+                  Comece cadastrando seu primeiro município para acessar todas
+                  as funcionalidades.
+                </p>
+                <Button
+                  onClick={handleAddNew}
+                  className='bg-gradient-to-r from-[var(--blue-9)] to-[var(--blue-10)] hover:from-[var(--blue-10)] hover:to-[var(--blue-9)] text-white shadow-lg hover:shadow-xl transition-all duration-300'>
+                  <Plus className='h-4 w-4 mr-2' />
+                  Cadastrar Primeiro Município
+                </Button>
               </div>
             ) : (
-              <MunicipalitiesTable
-                cities={cities}
-                selectedItems={selectedItems}
-                onSelectItem={handleSelectItem}
-                onCadastrarDashboard={handleCadastrarDashboard}
-              />
-            )}
+              <>
+                <div className='rounded-lg border border-[var(--slate-4)] overflow-hidden bg-white shadow-sm'>
+                  <MunicipalitiesTable
+                    cities={cities}
+                    selectedItems={selectedItems}
+                    onSelectItem={handleSelectItem}
+                    onCadastrarDashboard={handleCadastrarDashboard}
+                  />
+                </div>
 
-            {/* Pagination */}
-            {cities && cities.length > 0 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-                totalItems={totalItems}
-                itemsPerPage={itemsPerPage}
-              />
+                {/* Enhanced Pagination */}
+                {cities && cities.length > 0 && (
+                  <div className='mt-8 border-t border-[var(--slate-4)] pt-6'>
+                    <Pagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={handlePageChange}
+                      totalItems={totalItems}
+                      itemsPerPage={itemsPerPage}
+                    />
+                  </div>
+                )}
+              </>
             )}
           </CardContent>
         </Card>
