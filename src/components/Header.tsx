@@ -10,16 +10,18 @@ import {
 import { Logo } from '@/components/ui/logo';
 import { useAuth } from './AuthContext';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navigationItems = [
-  { name: 'Dashboard', href: '/dashboard', active: true },
-  { name: 'Diagnóstico', href: '/diagnostico', active: false },
-  { name: 'Gestores', href: '/gestores', active: false },
-  { name: 'Módulo tarifário', href: '/modulo-tarifario', active: false },
+  { name: 'Dashboard', href: '/dashboard' },
+  { name: 'Diagnóstico', href: '/diagnostico' },
+  { name: 'Gestores', href: '/gestores' },
+  { name: 'Módulo tarifário', href: '/modulo-tarifario' },
 ];
 
 export function Header() {
   const { handleLogout, userRole } = useAuth();
+  const pathname = usePathname();
 
   return (
     <header className='w-full bg-white border-b border-gray-200 px-6 py-4'>
@@ -33,18 +35,21 @@ export function Header() {
 
           {/* Navigation */}
           <nav className='flex items-center gap-8'>
-            {navigationItems.map((item) => (
-              <Link
-                href={item.href}
-                key={item.name}
-                className={`text-sm font-medium pb-4 border-b-2 transition-colors ${
-                  item.active
-                    ? 'text-gray-900 border-orange-500'
-                    : 'text-gray-600 border-transparent hover:text-gray-900'
-                }`}>
-                {item.name}
-              </Link>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive = pathname.startsWith(item.href);
+              return (
+                <Link
+                  href={item.href}
+                  key={item.name}
+                  className={`text-sm font-medium pb-4 border-b-2 transition-colors ${
+                    isActive
+                      ? 'text-gray-900 border-orange-500'
+                      : 'text-gray-600 border-transparent hover:text-gray-900'
+                  }`}>
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
