@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table';
 import { ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import type { CitysData } from '@/app/hooks/useDashboardData';
+import type { CitysData } from '@/hooks/useDashboardData'; 
 
 interface MunicipalitiesTableProps {
   cities: CitysData[];

@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import type { CitysData } from '@/app/hooks/useDashboardData'; 
+import type { CitysData } from '@/hooks/useDashboardData';  
 
 interface CreateDashboardModalProps {
   isOpen: boolean;

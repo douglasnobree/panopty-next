@@ -1,6 +1,6 @@
 'use client';
 
-import { usePowerBI } from '@/app/hooks/usePowerBI';
+import { usePowerBI } from '@/hooks/usePowerBI'; 
 import { useParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
