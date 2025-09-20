@@ -17,7 +17,7 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     setIsAuthChecked(true);
 
     if (!auth) {
-      router.push('/login');
+      router.push('/');
     }
   }, [router]);
 
