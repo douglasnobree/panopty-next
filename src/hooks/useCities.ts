@@ -125,25 +125,25 @@ export const useCities = (options: UseCitiesOptions = {}): UseCitiesReturn => {
     error,
     isRefetching,
     refetch,
-  } = useQuery({
+  } = useQuery<CitiesResponse>({
     queryKey,
     queryFn: () => fetchCities({ search: searchTerm, max, page: currentPage }),
     enabled: autoFetch,
     staleTime: 5 * 60 * 1000, // 5 minutos
-    retry: (failureCount, error: any) => {
+    retry: (failureCount, error: unknown) => {
       // Não fazer retry em caso de erro 401 (não autorizado)
-      if (error?.response?.status === 401) {
+      if (
+        error &&
+        typeof error === 'object' &&
+        'response' in error &&
+        error.response &&
+        typeof error.response === 'object' &&
+        'status' in error.response &&
+        error.response.status === 401
+      ) {
         return false;
       }
       return failureCount < 2;
-    },
-    // Fallback para dados mockados se a API falhar
-    onError: (error) => {
-      console.error('Erro ao carregar cidades:', error);
-      // Por enquanto, vamos usar dados mockados como fallback
-      if (!citiesData) {
-        console.log('Usando dados mockados como fallback');
-      }
     },
   });
 
@@ -156,16 +156,17 @@ export const useCities = (options: UseCitiesOptions = {}): UseCitiesReturn => {
 
   // Extrair dados da resposta
   const cities = citiesData?.data || [];
-  const pagination: PaginationInfo | null = citiesData
-    ? {
-        current_page: citiesData.current_page,
-        last_page: citiesData.last_page,
-        per_page: citiesData.per_page,
-        total: citiesData.total,
-        from: citiesData.from,
-        to: citiesData.to,
-      }
-    : null;
+  const pagination: PaginationInfo | null =
+    citiesData && typeof citiesData === 'object' && 'current_page' in citiesData
+      ? {
+          current_page: (citiesData as CitiesResponse).current_page,
+          last_page: (citiesData as CitiesResponse).last_page || 1,
+          per_page: (citiesData as CitiesResponse).per_page || 50,
+          total: (citiesData as CitiesResponse).total || 0,
+          from: (citiesData as CitiesResponse).from || 0,
+          to: (citiesData as CitiesResponse).to || 0,
+        }
+      : null;
 
   // Processar erro para exibição
   const processedError = (() => {
