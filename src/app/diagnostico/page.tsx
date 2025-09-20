@@ -194,7 +194,7 @@ export default function Diagnostics() {
     <div className='min-h-screen bg-background'>
       <div className='p-6'>
         {/* Header Section */}
-        <div className='mb-8'>
+        <div className='mb-8 animate-fade-in-up'>
           <div className='flex items-center justify-between'>
             <div>
               <h1 className='text-3xl font-bold text-slate-900'>
@@ -208,7 +208,9 @@ export default function Diagnostics() {
         </div>
 
         {/* Form Section */}
-        <Card className='shadow-sm border border-[var(--border)] mb-8'>
+        <Card
+          className='shadow-sm border border-[var(--border)] mb-8 animate-fade-in-up'
+          style={{ animationDelay: '0.1s' }}>
           <CardHeader>
             <CardTitle>Gerar diagnóstico</CardTitle>
           </CardHeader>
@@ -269,15 +271,31 @@ export default function Diagnostics() {
         </Card>
 
         {loading && (
-          <div className='flex items-center justify-center py-8'>
-            <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--blue-9)]'></div>
+          <div className='flex flex-col items-center justify-center py-16 animate-pulse-slow'>
+            <div className='relative'>
+              <div className='animate-spin rounded-full h-16 w-16 border-4 border-[var(--blue-9)] border-t-transparent'></div>
+              <div
+                className='absolute inset-0 rounded-full border-4 border-[var(--blue-10)] border-t-transparent animate-spin'
+                style={{
+                  animationDirection: 'reverse',
+                  animationDuration: '1.5s',
+                }}></div>
+            </div>
+            <p className='text-[var(--slate-11)] font-medium mt-4'>
+              Gerando diagnóstico...
+            </p>
+            <p className='text-[var(--slate-10)] text-sm mt-1'>
+              Aguarde enquanto processamos os dados
+            </p>
           </div>
         )}
 
         {diagnostics && !loading && (
           <div className='space-y-8'>
             {/* Header with actions */}
-            <Card className='shadow-sm border border-[var(--border)]'>
+            <Card
+              className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+              style={{ animationDelay: '0.2s' }}>
               <CardHeader>
                 <div className='flex items-center justify-between'>
                   <CardTitle className='flex items-center'>
@@ -304,7 +322,9 @@ export default function Diagnostics() {
             </Card>
 
             {/* Arrecadação CIP */}
-            <Card className='shadow-sm border border-[var(--border)]'>
+            <Card
+              className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+              style={{ animationDelay: '0.3s' }}>
               <CardHeader>
                 <CardTitle>Extrato de arrecadação CIP</CardTitle>
               </CardHeader>
@@ -352,7 +372,9 @@ export default function Diagnostics() {
             </Card>
 
             {/* Pagamentos Iluminação Pública */}
-            <Card className='shadow-sm border border-[var(--border)]'>
+            <Card
+              className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+              style={{ animationDelay: '0.4s' }}>
               <CardHeader>
                 <CardTitle>Pagamentos da Iluminação Pública</CardTitle>
               </CardHeader>
@@ -381,7 +403,9 @@ export default function Diagnostics() {
             </Card>
 
             {/* Companhia Energética */}
-            <Card className='shadow-sm border border-[var(--border)]'>
+            <Card
+              className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+              style={{ animationDelay: '0.5s' }}>
               <CardHeader>
                 <CardTitle>
                   Pagamentos efetuados para companhia energética
@@ -410,7 +434,9 @@ export default function Diagnostics() {
             {/* Manutenção */}
             {diagnostics.informacoesManutencao.mediaManutencao !==
               undefined && (
-              <Card className='shadow-sm border border-[var(--border)]'>
+              <Card
+                className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+                style={{ animationDelay: '0.6s' }}>
                 <CardHeader>
                   <CardTitle>
                     Pagamentos efetuados para empresa de manutenção da
@@ -440,7 +466,9 @@ export default function Diagnostics() {
 
             {/* Message */}
             {diagnosticMessage && (
-              <Card className='shadow-sm border border-[var(--border)]'>
+              <Card
+                className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+                style={{ animationDelay: '0.7s' }}>
                 <CardContent className='py-4'>
                   <p className='text-slate-600'>{diagnosticMessage}</p>
                 </CardContent>
@@ -450,7 +478,9 @@ export default function Diagnostics() {
         )}
 
         {!diagnostics && (
-          <Card className='shadow-sm border border-[var(--border)]'>
+          <Card
+            className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+            style={{ animationDelay: '0.2s' }}>
             <CardHeader>
               <div className='flex items-center justify-between'>
                 <CardTitle className='flex items-center'>

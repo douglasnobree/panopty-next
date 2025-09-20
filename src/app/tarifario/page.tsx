@@ -58,7 +58,7 @@ export default function Tarifario() {
     <div className='min-h-screen bg-background'>
       <div className='p-6'>
         {/* Header Section */}
-        <div className='mb-8'>
+        <div className='mb-8 animate-fade-in-up'>
           <div>
             <h1 className='text-3xl font-bold text-slate-900'>
               Módulo tarifário
@@ -70,7 +70,9 @@ export default function Tarifario() {
         </div>
 
         {/* Table Section */}
-        <Card className='shadow-sm border border-[var(--border)]'>
+        <Card
+          className='shadow-sm border border-[var(--border)] animate-fade-in-up'
+          style={{ animationDelay: '0.1s' }}>
           <CardHeader>
             <CardTitle>Módulos tarifários</CardTitle>
           </CardHeader>

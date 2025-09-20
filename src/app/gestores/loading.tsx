@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-[var(--slate-1)] via-background to-[var(--slate-2)] animate-fade-in-up'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-50 animate-fade-in-up'>
       <div className='relative'>
         <div className='animate-spin rounded-full h-16 w-16 border-4 border-[var(--blue-9)] border-t-transparent'></div>
         <div
@@ -11,7 +11,7 @@ export default function Loading() {
           }}></div>
       </div>
       <p className='text-[var(--slate-11)] font-medium mt-4'>
-        Carregando módulo tarifário...
+        Carregando painel de gestores...
       </p>
       <p className='text-[var(--slate-10)] text-sm mt-1'>
         Aguarde enquanto preparamos os dados

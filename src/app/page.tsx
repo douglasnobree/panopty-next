@@ -46,10 +46,15 @@ export default function Login() {
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-50 p-4'>
-      <div className='w-full max-w-md flex flex-col items-center gap-6 sm:gap-12'>
-        <Logo width={150} height={87.23} type='vertical' />
+      <div className='w-full max-w-md flex flex-col items-center gap-6 sm:gap-12 animate-fade-in-up'>
+        <div className='animate-fade-in-up' style={{ animationDelay: '0.1s' }}>
+          <Logo width={150} height={87.23} type='vertical' />
+        </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-4'>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className='w-full space-y-4 animate-fade-in-up'
+          style={{ animationDelay: '0.2s' }}>
           <div className='space-y-2'>
             <Label
               htmlFor='email'

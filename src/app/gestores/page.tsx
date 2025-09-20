@@ -60,7 +60,7 @@ function GestoresDashboard() {
     <>
       <div className='min-h-screen bg-gray-50 p-4'>
         <div className='max-w-7xl mx-auto space-y-6'>
-          <Card>
+          <Card className='animate-fade-in-up'>
             <CardHeader>
               <CardTitle>
                 {isAdmin
@@ -90,7 +90,9 @@ function GestoresDashboard() {
           </Card>
 
           {/* Seção de ações rápidas */}
-          <Card>
+          <Card
+            className='animate-fade-in-up'
+            style={{ animationDelay: '0.1s' }}>
             <CardHeader>
               <CardTitle>Acesso Rápido</CardTitle>
             </CardHeader>

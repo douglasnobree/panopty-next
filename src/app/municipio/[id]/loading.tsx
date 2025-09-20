@@ -11,7 +11,7 @@ export default function Loading() {
           }}></div>
       </div>
       <p className='text-[var(--slate-11)] font-medium mt-4'>
-        Carregando módulo tarifário...
+        Carregando município...
       </p>
       <p className='text-[var(--slate-10)] text-sm mt-1'>
         Aguarde enquanto preparamos os dados
