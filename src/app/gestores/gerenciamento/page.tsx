@@ -134,7 +134,7 @@ function CityManagersList() {
                 />
               </div>
               <Button
-                onClick={() => router.push('/gestores/criar')}
+                onClick={() => router.push('/gestores/criar-gestor')}
                 className='w-full sm:w-auto'>
                 Criar Novo Gestor
               </Button>

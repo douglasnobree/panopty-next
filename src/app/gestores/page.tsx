@@ -129,7 +129,7 @@ function GestoresDashboard() {
                       Gerenciar Gestores
                     </Button>
                     <Button
-                      onClick={() => router.push('/criar-gestor')}
+                      onClick={() => router.push('/gestores/criar-gestor')}
                       variant='secondary'>
                       Criar Novo Gestor
                     </Button>
