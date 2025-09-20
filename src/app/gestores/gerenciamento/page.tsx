@@ -20,7 +20,7 @@ import { CityManager } from '@/lib/cityManager';
 import { PrivateRoute } from '../../private';
 import { useAuth } from '@/components/AuthContext';
 import { Pagination } from '@/components/ui/pagination';
-import EditCitiesModal from '@/components/EditCitiesModal';
+import EditCitiesModal from '@/components/modals/EditCitiesModal';
 
 function GerenciamentoPage() {
   return (
@@ -40,6 +40,7 @@ function CityManagersList() {
     pagination,
     searchTerm,
     setSearchTerm,
+    searchCityManagers,
     deleteCityManager,
     updateCityManagerStatus,
     refreshCityManagers,
@@ -54,6 +55,15 @@ function CityManagersList() {
   const [editCitiesModalOpen, setEditCitiesModalOpen] = useState(false);
   const [managerToEditCities, setManagerToEditCities] =
     useState<CityManager | null>(null);
+
+  // Efeito para fazer busca quando searchTerm muda
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      searchCityManagers(searchTerm);
+    }, 300); // Debounce de 300ms
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm, searchCityManagers]);
 
   const handleDeleteManager = async (id: number) => {
     setManagerToDelete(id);
