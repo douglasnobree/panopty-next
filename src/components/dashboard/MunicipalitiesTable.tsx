@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table';
 import { ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import type { CitysData } from '@/hooks/useDashboardData'; 
+import type { CitysData } from '@/hooks/useDashboardData';
 
 interface MunicipalitiesTableProps {
   cities: CitysData[];
@@ -47,10 +47,12 @@ export function MunicipalitiesTable({
           <TableHead>Código</TableHead>
           <TableHead>Nome</TableHead>
           <TableHead>Estado</TableHead>
-          <TableHead>Arquivos de Conta</TableHead>
-          <TableHead>Ativos de IP</TableHead>
-          <TableHead>Diagnósticos</TableHead>
-          <TableHead>Análises</TableHead>
+          <TableHead className='hidden sm:table-cell'>
+            Arquivos de Conta
+          </TableHead>
+          <TableHead className='hidden sm:table-cell'>Ativos de IP</TableHead>
+          <TableHead className='hidden sm:table-cell'>Diagnósticos</TableHead>
+          <TableHead className='hidden sm:table-cell'>Análises</TableHead>
           <TableHead>Dashboard</TableHead>
           <TableHead className='w-12'></TableHead>
         </TableRow>
@@ -73,16 +75,16 @@ export function MunicipalitiesTable({
             <TableCell className='font-mono text-sm'>{city.cod_mun}</TableCell>
             <TableCell className='font-medium'>{city.name}</TableCell>
             <TableCell>{city.uf}</TableCell>
-            <TableCell className='font-medium text-[var(--blue-9)]'>
+            <TableCell className='hidden sm:table-cell font-medium text-[var(--blue-9)]'>
               {city.bill_files_count || 0}
             </TableCell>
-            <TableCell className='font-medium text-[var(--blue-9)]'>
+            <TableCell className='hidden sm:table-cell font-medium text-[var(--blue-9)]'>
               {city.cip_active_files_count || 0}
             </TableCell>
-            <TableCell className='font-medium text-[var(--chart-1)]'>
+            <TableCell className='hidden sm:table-cell font-medium text-[var(--chart-1)]'>
               {city.diagnostico_count || 0}
             </TableCell>
-            <TableCell className='font-medium text-[var(--chart-1)]'>
+            <TableCell className='hidden sm:table-cell font-medium text-[var(--chart-1)]'>
               {city.analise_count || 0}
             </TableCell>
             <TableCell>

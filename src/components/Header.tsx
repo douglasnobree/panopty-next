@@ -24,17 +24,17 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className='w-full bg-white border-b border-gray-200 px-6 py-4'>
+    <header className='w-full bg-white border-b border-gray-200 px-4 sm:px-6 py-4'>
       <div className='flex items-center justify-between'>
         {/* Logo and Navigation */}
-        <div className='flex items-center gap-8'>
+        <div className='flex items-center gap-4 sm:gap-8'>
           {/* Logo */}
           <div className='flex items-center gap-2'>
             <Logo />
           </div>
 
           {/* Navigation */}
-          <nav className='flex items-center gap-8'>
+          <nav className='hidden sm:flex items-center gap-4 sm:gap-8'>
             {navigationItems.map((item) => {
               const isActive = pathname.startsWith(item.href);
               return (
@@ -54,7 +54,7 @@ export function Header() {
         </div>
 
         {/* Right side - Notification and User */}
-        <div className='flex items-center gap-4'>
+        <div className='flex items-center gap-2 sm:gap-4'>
           {/* Notification Bell */}
           <Button variant='ghost' size='sm' className='p-2'>
             <Bell size={20} className='text-gray-600' />

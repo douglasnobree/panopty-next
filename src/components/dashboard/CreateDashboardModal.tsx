@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import type { CitysData } from '@/hooks/useDashboardData';  
+import type { CitysData } from '@/hooks/useDashboardData';
 
 interface CreateDashboardModalProps {
   isOpen: boolean;
@@ -46,8 +46,8 @@ export function CreateDashboardModal({
           </DialogDescription>
         </DialogHeader>
         <div className='grid gap-4 py-4'>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <Label htmlFor='dashboard_name' className='text-right'>
+          <div className='grid grid-cols-1 sm:grid-cols-4 items-center gap-4'>
+            <Label htmlFor='dashboard_name' className='sm:text-right'>
               Nome
             </Label>
             <Input
@@ -59,11 +59,11 @@ export function CreateDashboardModal({
                   name: e.target.value,
                 })
               }
-              className='col-span-3'
+              className='sm:col-span-3'
             />
           </div>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <Label htmlFor='dashboard_url' className='text-right'>
+          <div className='grid grid-cols-1 sm:grid-cols-4 items-center gap-4'>
+            <Label htmlFor='dashboard_url' className='sm:text-right'>
               URL
             </Label>
             <Input
@@ -75,7 +75,7 @@ export function CreateDashboardModal({
                   dashboard_url: e.target.value,
                 })
               }
-              className='col-span-3'
+              className='sm:col-span-3'
             />
           </div>
         </div>

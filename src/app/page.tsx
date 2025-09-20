@@ -46,8 +46,8 @@ export default function Login() {
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-50 p-4'>
-      <div className='w-full max-w-md flex flex-col items-center gap-12'>
-        <Logo width={220} height={128.23} type='vertical' />
+      <div className='w-full max-w-md flex flex-col items-center gap-6 sm:gap-12'>
+        <Logo width={150} height={87.23} type='vertical' />
 
         <form onSubmit={handleSubmit(onSubmit)} className='w-full space-y-4'>
           <div className='space-y-2'>

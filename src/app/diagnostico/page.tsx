@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,7 +9,8 @@ import { SearchInput } from '@/components/search/search-input';
 import { Download, X, FileText } from 'lucide-react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import Select from 'react-select';
+import type { SingleValue } from 'react-select';
+const Select = dynamic(() => import('react-select'), { ssr: false });
 import * as yup from 'yup';
 import api, { getArqui } from '@/services/api';
 import type { CitysData } from '@/lib/types';
@@ -113,12 +115,12 @@ export default function Diagnostics() {
   const yearValue = watch('year');
   const codMunValue = watch('codMun');
 
-  const handleYearChange = (option: Option | null) => {
-    setValue('year', option);
+  const handleYearChange = (option: unknown) => {
+    setValue('year', option as Option | null);
   };
 
-  const handleCodMunChange = (option: Option | null) => {
-    setValue('codMun', option);
+  const handleCodMunChange = (option: unknown) => {
+    setValue('codMun', option as Option | null);
   };
 
   const [data, setData] = useState<diagnosticsForm | null>(null);

@@ -7,9 +7,9 @@ import { Plus } from 'lucide-react';
 import { PeriodFilters } from '@/components/filter/period-filter';
 import { SearchInput } from '@/components/search/search-input';
 import { PrivateRoute } from '../private';
-import { useDashboardData } from '@/hooks/useDashboardData'; 
-import { usePowerBI } from '@/hooks/usePowerBI'; 
-import type { CitysData } from '@/hooks/useDashboardData'; 
+import { useDashboardData } from '@/hooks/useDashboardData';
+import { usePowerBI } from '@/hooks/usePowerBI';
+import type { CitysData } from '@/hooks/useDashboardData';
 import { MunicipalitiesTable } from '../../components/dashboard/MunicipalitiesTable';
 import { CreateMunicipalityModal } from '../../components/dashboard/CreateMunicipalityModal';
 import { CreateDashboardModal } from '../../components/dashboard/CreateDashboardModal';
@@ -147,7 +147,7 @@ function Dashboard() {
   return (
     <div className='min-h-screen bg-gradient-to-br from-[var(--slate-1)] via-background to-[var(--slate-2)]'>
       <main
-        className='container mx-auto px-4 py-8 space-y-8'
+        className='container mx-auto px-4 py-4 sm:py-8 space-y-4 sm:space-y-8'
         style={{ maxWidth: 'var(--max-width)' }}>
         <Card
           className='shadow-lg border-0 bg-gradient-to-r from-white to-[var(--slate-1)] backdrop-blur-sm animate-fade-in-up'
@@ -173,12 +173,12 @@ function Dashboard() {
           className='shadow-lg border-0 bg-gradient-to-r from-white to-[var(--slate-1)] backdrop-blur-sm animate-fade-in-up'
           style={{ animationDelay: '0.2s' }}>
           <CardHeader className='border-b border-[var(--slate-4)] bg-gradient-to-r from-[var(--slate-1)] to-transparent'>
-            <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6'>
+            <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6'>
               <div>
-                <CardTitle className='text-2xl font-bold text-[var(--slate-12)] mb-1'>
+                <CardTitle className='text-xl sm:text-2xl font-bold text-[var(--slate-12)] mb-1'>
                   Municípios Cadastrados
                 </CardTitle>
-                <p className='text-[var(--slate-11)]'>
+                <p className='text-[var(--slate-11)] text-sm sm:text-base'>
                   Gerencie e monitore todos os municípios do sistema
                 </p>
               </div>
@@ -188,7 +188,7 @@ function Dashboard() {
                   value={searchValue}
                   onValueChange={setSearchValue}
                   onSearch={handleSearch}
-                  className='sm:w-80'
+                  className='w-full sm:w-80'
                 />
                 <Button
                   onClick={handleAddNew}
@@ -199,7 +199,7 @@ function Dashboard() {
               </div>
             </div>
           </CardHeader>
-          <CardContent className='p-6'>
+          <CardContent className='p-4 sm:p-6'>
             {loading ? (
               <div className='flex flex-col items-center justify-center py-16 animate-pulse-slow'>
                 <div className='relative'>

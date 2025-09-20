@@ -45,8 +45,8 @@ export function CreateMunicipalityModal({
           </DialogDescription>
         </DialogHeader>
         <div className='grid gap-4 py-4'>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <Label htmlFor='cod_mun' className='text-right'>
+          <div className='grid grid-cols-1 sm:grid-cols-4 items-center gap-4'>
+            <Label htmlFor='cod_mun' className='sm:text-right'>
               Código
             </Label>
             <Input
@@ -58,11 +58,11 @@ export function CreateMunicipalityModal({
                   cod_mun: e.target.value,
                 })
               }
-              className='col-span-3'
+              className='sm:col-span-3'
             />
           </div>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <Label htmlFor='name' className='text-right'>
+          <div className='grid grid-cols-1 sm:grid-cols-4 items-center gap-4'>
+            <Label htmlFor='name' className='sm:text-right'>
               Nome
             </Label>
             <Input
@@ -74,11 +74,11 @@ export function CreateMunicipalityModal({
                   name: e.target.value,
                 })
               }
-              className='col-span-3'
+              className='sm:col-span-3'
             />
           </div>
-          <div className='grid grid-cols-4 items-center gap-4'>
-            <Label htmlFor='uf' className='text-right'>
+          <div className='grid grid-cols-1 sm:grid-cols-4 items-center gap-4'>
+            <Label htmlFor='uf' className='sm:text-right'>
               UF
             </Label>
             <Input
@@ -90,7 +90,7 @@ export function CreateMunicipalityModal({
                   uf: e.target.value,
                 })
               }
-              className='col-span-3'
+              className='sm:col-span-3'
             />
           </div>
         </div>
