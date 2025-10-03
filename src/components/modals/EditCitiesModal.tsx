@@ -124,7 +124,6 @@ const EditCitiesModal: React.FC<EditCitiesModalProps> = ({
     const result = await updateCityManagerCities(manager.id, selectedCityIds);
 
     if (result.success) {
-      console.log('Cidades atualizadas com sucesso!');
       onSuccess();
       onClose();
     } else {

@@ -48,28 +48,18 @@ export function useDashboardData() {
     limit: number = 10
   ) => {
     try {
-      console.log('Fetching municipalities with params:', {
-        search,
-        page,
-        limit,
-      });
 
       const response = await api.post(
         '/municipalities',
         search ? { q: search, page, limit } : { page, limit }
       );
 
-      console.log('Municipalities API response:', response);
-      console.log('Municipalities data:', response.data);
 
-      // O backend está retornando um array com um único objeto de paginação
       const result = Array.isArray(response.data)
         ? (response.data[0] as PaginationData)
         : (response.data as PaginationData);
-      console.log('Parsed result:', result);
-      console.log('Cities array:', result?.data);
 
-      // Verificação de segurança para garantir que sempre retornamos algo válido
+
       if (!result || !result.data) {
         console.warn('Invalid data structure received:', result);
         return {
@@ -94,14 +84,11 @@ export function useDashboardData() {
 
   const fetchDashboardStats = async (period: string) => {
     try {
-      console.log('Fetching dashboard stats with period:', period);
-
       const response = await api.post('/dashboard/admin/filterByMonthYear', {
         q: period,
       });
 
-      console.log('Dashboard stats API response:', response);
-      console.log('Dashboard stats data:', response.data);
+
 
       const result = response.data as DashboardStats;
 

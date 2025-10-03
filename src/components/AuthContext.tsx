@@ -98,7 +98,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
         const decodedToken = jwtDecode(token) as DecodedToken;
         const { role } = decodedToken;
-        console.log(role);
 
         setCookie(undefined, 'panopty-role', role, {
           maxAge: 60 * 60 * 24, // 24 hours

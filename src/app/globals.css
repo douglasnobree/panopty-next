@@ -47,14 +47,14 @@
   --max-width: 1600px;
 
   /* Shadcn theme customization using your colors */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --background: var(--slate-1);
+  --foreground: var(--slate-12);
+  --card: var(--slate-2);
+  --card-foreground: var(--slate-12);
+  --popover: var(--slate-1);
+  --popover-foreground: var(--slate-12);
   --primary: var(--blue-9);
-  --primary-foreground: #ffffff;
+  --primary-foreground: var(--slate-1);
   --secondary: var(--slate-3);
   --secondary-foreground: var(--slate-12);
   --muted: var(--slate-3);
@@ -62,8 +62,8 @@
   --accent: var(--slate-4);
   --accent-foreground: var(--slate-12);
   --destructive: var(--error);
-  --destructive-foreground: #ffffff;
-  --border: var(--slate-7);
+  --destructive-foreground: var(--slate-1);
+  --border: var(--slate-6);
   --input: var(--slate-4);
   --ring: var(--blue-9);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -83,24 +83,24 @@
 }
 
 .dark {
-  --background: var(--slate-1);
-  --foreground: var(--slate-12);
-  --card: var(--slate-2);
-  --card-foreground: var(--slate-12);
-  --popover: var(--slate-2);
-  --popover-foreground: var(--slate-12);
+  --background: var(--slate-12);
+  --foreground: var(--slate-1);
+  --card: var(--slate-11);
+  --card-foreground: var(--slate-1);
+  --popover: var(--slate-11);
+  --popover-foreground: var(--slate-1);
   --primary: var(--blue-9);
-  --primary-foreground: #ffffff;
-  --secondary: var(--slate-4);
-  --secondary-foreground: var(--slate-12);
-  --muted: var(--slate-4);
-  --muted-foreground: var(--slate-11);
-  --accent: var(--slate-5);
-  --accent-foreground: var(--slate-12);
+  --primary-foreground: var(--slate-1);
+  --secondary: var(--slate-10);
+  --secondary-foreground: var(--slate-1);
+  --muted: var(--slate-10);
+  --muted-foreground: var(--slate-4);
+  --accent: var(--slate-9);
+  --accent-foreground: var(--slate-1);
   --destructive: var(--error);
-  --destructive-foreground: #ffffff;
-  --border: var(--slate-7);
-  --input: var(--slate-4);
+  --destructive-foreground: var(--slate-1);
+  --border: var(--slate-8);
+  --input: var(--slate-10);
   --ring: var(--blue-9);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);

@@ -15,14 +15,10 @@ export function usePowerBI() {
   const fetchDashboardLink = async (cityId: number) => {
     try {
       const response = await api.get(`/dashboardLinks/${cityId}`);
-      console.log('Dashboard link response:', response);
 
-      // A resposta tem a estrutura: { data: { message, data: { city_id, city_name, uf, dashboards: [...] } } }
       const dashboardData = response.data.data;
 
-      // Verifica se há dashboards disponíveis
       if (dashboardData.dashboards && dashboardData.dashboards.length > 0) {
-        // Retorna a URL do primeiro dashboard disponível
         return dashboardData.dashboards[0].dashboard_url;
       } else {
         throw new Error('Nenhum dashboard encontrado para esta cidade');

@@ -48,15 +48,12 @@ function Dashboard() {
   const { data: paginationData, isLoading: isCountiesLoading } =
     useMunicipalitiesQuery(searchValue, currentPage, itemsPerPage);
 
-  console.log('Dashboard - paginationData:', paginationData);
-  console.log('Dashboard - isCountiesLoading:', isCountiesLoading);
 
   const cities = paginationData?.data || [];
   const totalPages = paginationData?.last_page || 1;
   const totalItems = paginationData?.total || 0;
 
-  console.log('Dashboard - cities extracted:', cities);
-  console.log('Dashboard - cities length:', cities.length);
+
 
   const { data: dashboardStats, isLoading: isStatsLoading } =
     useDashboardStatsQuery(period);

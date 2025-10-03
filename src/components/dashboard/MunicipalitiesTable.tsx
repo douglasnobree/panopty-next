@@ -27,8 +27,6 @@ export function MunicipalitiesTable({
 }: MunicipalitiesTableProps) {
   const router = useRouter();
 
-  console.log('MunicipalitiesTable - cities:', cities);
-  console.log('MunicipalitiesTable - cities length:', cities?.length || 0);
 
   // Se não há dados, mostrar mensagem
   if (!cities || cities.length === 0) {

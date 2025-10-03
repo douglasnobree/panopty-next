@@ -24,7 +24,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className='w-full bg-white border-b border-gray-200 px-4 sm:px-6 py-4'>
+    <header className='w-full bg-background border-b border-border px-4 sm:px-6 py-4'>
       <div className='flex items-center justify-between'>
         {/* Logo and Navigation */}
         <div className='flex items-center gap-4 sm:gap-8'>
@@ -45,8 +45,8 @@ export function Header() {
                   key={item.name}
                   className={`text-sm font-medium pb-4 border-b-2 transition-colors ${
                     isActive
-                      ? 'text-gray-900 border-orange-500'
-                      : 'text-gray-600 border-transparent hover:text-gray-900'
+                      ? 'text-foreground border-primary'
+                      : 'text-muted-foreground border-transparent hover:text-foreground'
                   }`}>
                   {item.name}
                 </Link>
@@ -59,14 +59,14 @@ export function Header() {
         <div className='flex items-center gap-2 sm:gap-4'>
           {/* Notification Bell */}
           <Button variant='ghost' size='sm' className='p-2'>
-            <Bell size={20} className='text-gray-600' />
+            <Bell size={20} className='text-muted-foreground' />
           </Button>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant='ghost'
-                className='flex items-center gap-2 text-gray-700'>
+                className='flex items-center gap-2 text-foreground'>
                 {userRole === 'admin' ? 'Administrador' : 'Gestor'}
                 <ChevronDown size={16} />
               </Button>

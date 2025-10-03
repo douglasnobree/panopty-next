@@ -17,19 +17,19 @@ export function StatsCard({
 }: StatsCardProps) {
   const colorClasses = {
     blue: {
-      card: 'border-l-4 border-l-[var(--blue-9)] bg-gradient-to-br from-[var(--blue-1)] to-[var(--blue-2)] hover:from-[var(--blue-2)] hover:to-[var(--blue-3)]',
-      icon: 'text-[var(--blue-9)]',
-      value: 'text-[var(--blue-12)]',
+      card: 'border-l-4 border-l-primary bg-gradient-to-br from-accent to-card hover:from-card hover:to-muted',
+      icon: 'text-primary',
+      value: 'text-foreground',
     },
     amber: {
-      card: 'border-l-4 border-l-[var(--amber-10)] bg-gradient-to-br from-[var(--amber-3)] to-[var(--amber-4)] hover:from-[var(--amber-4)] hover:to-[var(--amber-5)]',
-      icon: 'text-[var(--amber-12)]',
-      value: 'text-[var(--amber-12)]',
+      card: 'border-l-4 border-l-[#F59E0B] bg-gradient-to-br from-[#FEF3C7] to-[#FDE68A] hover:from-[#FDE68A] hover:to-[#FCD34D]',
+      icon: 'text-[#B45309]',
+      value: 'text-[#92400E]',
     },
     green: {
-      card: 'border-l-4 border-l-[var(--green-12)] bg-gradient-to-br from-[var(--green-3)] to-[var(--green-4)] hover:from-[var(--green-4)] hover:to-[var(--green-5)]',
-      icon: 'text-[var(--green-12)]',
-      value: 'text-[var(--green-12)]',
+      card: 'border-l-4 border-l-[#059669] bg-gradient-to-br from-[#D1FAE5] to-[#A7F3D0] hover:from-[#A7F3D0] hover:to-[#6EE7B7]',
+      icon: 'text-[#065F46]',
+      value: 'text-[#064E3B]',
     },
   };
 
@@ -55,12 +55,12 @@ export function StatsCard({
       )}>
       <CardHeader className='pb-3'>
         <div className='flex items-center justify-between'>
-          <CardTitle className='text-sm font-semibold text-[var(--slate-11)] uppercase tracking-wide group-hover:text-[var(--slate-12)] transition-colors'>
+          <CardTitle className='text-sm font-semibold text-muted-foreground uppercase tracking-wide group-hover:text-foreground transition-colors'>
             {title}
           </CardTitle>
           <div
             className={cn(
-              'p-2 rounded-full bg-white/50 backdrop-blur-sm transition-all group-hover:scale-110',
+              'p-2 rounded-full bg-background/50 backdrop-blur-sm transition-all group-hover:scale-110',
               colorClasses[color].icon
             )}>
             {getIcon()}
@@ -75,7 +75,7 @@ export function StatsCard({
           )}>
           {typeof value === 'number' ? value.toLocaleString('pt-BR') : value}
         </div>
-        <div className='mt-1 text-xs text-[var(--slate-10)] font-medium'>
+        <div className='mt-1 text-xs text-muted-foreground font-medium'>
           Total registrado
         </div>
       </CardContent>
