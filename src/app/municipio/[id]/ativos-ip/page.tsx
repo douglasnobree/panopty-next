@@ -63,7 +63,7 @@ export default function CityIpAssets({ params }: CityIpAssetsProps) {
             </div>
             <Button
               onClick={() =>
-                router.push(`/dashboard/municipio/${cityId}/ativos-ip/upload`)
+                router.push(`/municipio/${cityId}/ativos-ip/upload`)
               }
               className='bg-[var(--blue-9)] hover:bg-[var(--blue-10)] text-white'>
               <Plus className='w-4 h-4 mr-2' />

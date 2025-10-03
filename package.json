@@ -27,6 +27,7 @@
     "next": "15.5.3",
     "nookies": "^2.5.2",
     "phosphor-react": "^1.4.1",
+    "powerbi-client": "^2.23.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-dropzone": "^14.3.8",

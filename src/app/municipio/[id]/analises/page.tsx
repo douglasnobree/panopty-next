@@ -38,7 +38,7 @@ const CityAnalyzes = () => {
               tableHeaders={[]}
               addButtonEvent={() =>
                 router.push(
-                  `/dashboard/municipio/${cityId}/analises/create-new`
+                  `/municipio/${cityId}/analises/create-new`
                 )
               }
               addButton='Nova análise'>
