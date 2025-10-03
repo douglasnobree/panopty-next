@@ -1,3 +1,16 @@
+export interface Dashboard {
+  id: number;
+  name: string;
+  dashboard_url: string;
+}
+
+export interface City {
+  city_id: number;
+  city_name: string;
+  uf: string;
+  dashboards: Dashboard[];
+}
+
 export interface CitysData {
   id: string;
   cod_mun: string;
