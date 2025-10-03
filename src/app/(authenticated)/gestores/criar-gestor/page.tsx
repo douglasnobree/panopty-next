@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useAuth } from '@/components/AuthContext';
-import { PrivateRoute } from '../../private';
 import { useCities } from '@/hooks/useCities';
 import api from '@/services/api';
 import { useForm, Controller } from 'react-hook-form';
@@ -53,13 +52,6 @@ const validationSchema = yup.object().shape({
     }),
 });
 
-function CreateManagerPage() {
-  return (
-    <PrivateRoute>
-      <CreateManager />
-    </PrivateRoute>
-  );
-}
 
 function CreateManager() {
   const { userRole } = useAuth();
@@ -449,4 +441,4 @@ function CreateManager() {
   );
 }
 
-export default CreateManagerPage;
+export default CreateManager;

@@ -6,24 +6,17 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { PeriodFilters } from '@/components/filter/period-filter';
 import { SearchInput } from '@/components/search/search-input';
-import { PrivateRoute } from '../private';
 import { useDashboardData } from '@/hooks/useDashboardData';
 import { usePowerBI } from '@/hooks/usePowerBI';
 import type { CitysData } from '@/hooks/useDashboardData';
-import { MunicipalitiesTable } from '../../components/dashboard/MunicipalitiesTable';
-import { CreateMunicipalityModal } from '../../components/dashboard/CreateMunicipalityModal';
-import { CreateDashboardModal } from '../../components/dashboard/CreateDashboardModal';
-import { DashboardStatsCards } from '../../components/dashboard/DashboardStatsCards';
-import { Pagination } from '../../components/ui/pagination';
+import { MunicipalitiesTable } from '../../../components/dashboard/MunicipalitiesTable';
+import { CreateMunicipalityModal } from '../../../components/dashboard/CreateMunicipalityModal';
+import { CreateDashboardModal } from '../../../components/dashboard/CreateDashboardModal';
+import { DashboardStatsCards } from '../../../components/dashboard/DashboardStatsCards';
+import { Pagination } from '../../../components/ui/pagination';
 import { isAuthenticated } from '@/lib/auth';
 
-function DashboardPage() {
-  return (
-    <PrivateRoute>
-      <Dashboard />
-    </PrivateRoute>
-  );
-}
+
 
 function Dashboard() {
   const {
@@ -286,4 +279,4 @@ function Dashboard() {
   );
 }
 
-export default DashboardPage;
+export default Dashboard;

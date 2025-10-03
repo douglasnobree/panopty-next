@@ -6,16 +6,8 @@ import { Header } from '@/components/Header';
 import { StatsCard } from '@/components/statscard/stats-card';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/components/AuthContext';
-import { PrivateRoute } from '../private';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-function GestoresPage() {
-  return (
-    <PrivateRoute>
-      <GestoresDashboard />
-    </PrivateRoute>
-  );
-}
 
 function GestoresDashboard() {
   const { userRole } = useAuth();
@@ -161,4 +153,4 @@ function GestoresDashboard() {
   );
 }
 
-export default GestoresPage;
+export default GestoresDashboard;

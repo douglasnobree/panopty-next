@@ -17,18 +17,10 @@ import {
 } from '@/components/ui/dialog';
 import { useCityManagers } from '@/hooks/useCityManagers';
 import { CityManager } from '@/lib/cityManager';
-import { PrivateRoute } from '../../private';
 import { useAuth } from '@/components/AuthContext';
 import { Pagination } from '@/components/ui/pagination';
 import EditCitiesModal from '@/components/modals/EditCitiesModal';
 
-function GerenciamentoPage() {
-  return (
-    <PrivateRoute>
-      <CityManagersList />
-    </PrivateRoute>
-  );
-}
 
 function CityManagersList() {
   const router = useRouter();
@@ -331,4 +323,4 @@ function CityManagersList() {
   );
 }
 
-export default GerenciamentoPage;
+export default CityManagersList;

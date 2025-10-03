@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '@/services/api'; 
+import api from '@/services/api';
 
 export interface CitysData {
   id: number;
@@ -62,8 +62,10 @@ export function useDashboardData() {
       console.log('Municipalities API response:', response);
       console.log('Municipalities data:', response.data);
 
-      // O backend está retornando a paginação diretamente, não em um array
-      const result = response.data as PaginationData;
+      // O backend está retornando um array com um único objeto de paginação
+      const result = Array.isArray(response.data)
+        ? (response.data[0] as PaginationData)
+        : (response.data as PaginationData);
       console.log('Parsed result:', result);
       console.log('Cities array:', result?.data);
 
