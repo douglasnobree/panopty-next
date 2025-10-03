@@ -23,16 +23,6 @@ export default function CityManagerPage() {
   );
 
   useEffect(() => {
-    const checkUserRole = async () => {
-      const role = await getUserRole();
-      if (role !== 'cityManager') {
-        redirect('/');
-      }
-    };
-    checkUserRole();
-  }, []);
-
-  useEffect(() => {
     if (cities.length > 0 && !selectedCity) {
       setSelectedCity(cities[0]);
       if (cities[0].dashboards.length > 0) {
@@ -52,13 +42,13 @@ export default function CityManagerPage() {
   };
 
   return (
-    <div className='container mx-auto p-6 space-y-6'>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-3xl font-bold'>Painel do Gestor Municipal</h1>
-
+    <div className='w-full h-screen flex flex-col'>
+      <div className='flex justify-end items-center p-2 bg-white/80 backdrop-blur-sm absolute top-0 right-0 z-10'>
         {!loading && !error && cities.length > 0 && (
-          <div className='flex items-center gap-4'>
-            <Label htmlFor='city-select'>Selecione uma cidade:</Label>
+          <div className='flex items-center gap-2'>
+            <Label htmlFor='city-select' className='text-sm'>
+              Cidade:
+            </Label>
             <Select
               value={selectedCity?.city_id.toString()}
               onValueChange={handleCityChange}>
@@ -79,25 +69,23 @@ export default function CityManagerPage() {
         )}
       </div>
 
-      <Card className='p-4'>
+      <div className='flex-1 relative'>
         {loading ? (
           <p className='text-center py-8'>Carregando cidades e dashboards...</p>
         ) : error ? (
           <p className='text-center text-red-500 py-8'>{error}</p>
         ) : (
-          <div className='min-h-[600px] relative'>
+          <div className='w-full h-full'>
             {selectedCity && (
               <>
                 {selectedCity.dashboards.length > 0 && selectedDashboard ? (
-                  <div className='w-full h-full absolute'>
-                    <iframe
-                      src={selectedDashboard.dashboard_url}
-                      title={selectedDashboard.name}
-                      className='w-full h-full border-0'
-                      loading='lazy'
-                      allowFullScreen
-                    />
-                  </div>
+                  <iframe
+                    src={selectedDashboard.dashboard_url}
+                    title={selectedDashboard.name}
+                    className='w-full h-full border-0'
+                    loading='lazy'
+                    allowFullScreen
+                  />
                 ) : (
                   <p className='text-center py-8'>
                     Não há dashboards disponíveis para {selectedCity.city_name}.
@@ -107,7 +95,7 @@ export default function CityManagerPage() {
             )}
           </div>
         )}
-      </Card>
+      </div>
     </div>
   );
 }
