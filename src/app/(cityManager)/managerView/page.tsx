@@ -11,11 +11,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+
+// Adiciona estilos globais para esconder overflow
+import { useEffect as useEffectStyle } from 'react';
+const useGlobalStyles = () => {
+  useEffectStyle(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+};
 import { getUserRole } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { Dashboard, City } from '@/lib/types';
 
 export default function CityManagerPage() {
+  useGlobalStyles(); // Aplica os estilos globais
   const { cities, loading, error } = useDashboardLinks();
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedDashboard, setSelectedDashboard] = useState<Dashboard | null>(
@@ -69,7 +81,7 @@ export default function CityManagerPage() {
         )}
       </div>
 
-      <div className='flex-1 relative'>
+      <div className='flex-1 relative overflow-hidden -mt-[10px] -ml-[10px]'>
         {loading ? (
           <p className='text-center py-8'>Carregando cidades e dashboards...</p>
         ) : error ? (
@@ -82,9 +94,10 @@ export default function CityManagerPage() {
                   <iframe
                     src={selectedDashboard.dashboard_url}
                     title={selectedDashboard.name}
-                    className='w-full h-full border-0'
+                    className='w-[100%] h-[100%] border-0'
                     loading='lazy'
                     allowFullScreen
+                    frameBorder='0'
                   />
                 ) : (
                   <p className='text-center py-8'>
