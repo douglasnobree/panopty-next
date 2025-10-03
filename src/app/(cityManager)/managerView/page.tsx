@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useDashboardLinks } from '@/hooks/useDashboardLinks';
-import { Card } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import {
   Select,
@@ -12,7 +11,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-// Adiciona estilos globais para esconder overflow
 import { useEffect as useEffectStyle } from 'react';
 const useGlobalStyles = () => {
   useEffectStyle(() => {
@@ -22,9 +20,8 @@ const useGlobalStyles = () => {
     };
   }, []);
 };
-import { getUserRole } from '@/lib/auth';
-import { redirect } from 'next/navigation';
 import { Dashboard, City } from '@/lib/types';
+import { HeaderManager } from '@/components/HeaderManager';
 
 export default function CityManagerPage() {
   useGlobalStyles(); // Aplica os estilos globais
@@ -55,30 +52,33 @@ export default function CityManagerPage() {
 
   return (
     <div className='w-full h-screen flex flex-col'>
-      <div className='flex justify-end items-center p-2 bg-white/80 backdrop-blur-sm absolute top-0 right-0 z-10'>
-        {!loading && !error && cities.length > 0 && (
-          <div className='flex items-center gap-2'>
-            <Label htmlFor='city-select' className='text-sm'>
-              Cidade:
-            </Label>
-            <Select
-              value={selectedCity?.city_id.toString()}
-              onValueChange={handleCityChange}>
-              <SelectTrigger className='w-[280px]'>
-                <SelectValue placeholder='Selecione uma cidade' />
-              </SelectTrigger>
-              <SelectContent>
-                {cities.map((city) => (
-                  <SelectItem
-                    key={city.city_id}
-                    value={city.city_id.toString()}>
-                    {city.city_name} - {city.uf}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        )}
+      <div className='absolute w-full top-0 opacity-0 hover:opacity-100 transition-opacity duration-300 z-50'>
+        <HeaderManager />
+        <div className='absolute top-20 right-4 bg-transparent hover:bg-white/80 backdrop-blur-sm p-4 rounded-lg transition-all duration-300'>
+          {!loading && !error && cities.length > 0 && (
+            <div className='flex items-center gap-2'>
+              <Label htmlFor='city-select' className='text-sm font-medium'>
+                Cidade:
+              </Label>
+              <Select
+                value={selectedCity?.city_id.toString()}
+                onValueChange={handleCityChange}>
+                <SelectTrigger className='w-[280px]'>
+                  <SelectValue placeholder='Selecione uma cidade' />
+                </SelectTrigger>
+                <SelectContent>
+                  {cities.map((city) => (
+                    <SelectItem
+                      key={city.city_id}
+                      value={city.city_id.toString()}>
+                      {city.city_name} - {city.uf}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className='flex-1 relative overflow-hidden -mt-[10px] -ml-[10px]'>
@@ -94,7 +94,7 @@ export default function CityManagerPage() {
                   <iframe
                     src={selectedDashboard.dashboard_url}
                     title={selectedDashboard.name}
-                    className='w-[100%] h-[100%] border-0'
+                    className='w-[100%] h-[108%] border-0'
                     loading='lazy'
                     allowFullScreen
                     frameBorder='0'
