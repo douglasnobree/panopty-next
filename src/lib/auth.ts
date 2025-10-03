@@ -6,8 +6,25 @@ export type UserRole = 'admin' | 'cityManager';
 interface DecodedToken {
   exp: number;
   iss: string;
+  role: UserRole;
   // Adicione outras propriedades do token se necessário
 }
+
+export const getUserRole = (): UserRole | null => {
+  try {
+    const cookies = parseCookies();
+    const role = cookies['panopty-role'];
+
+    if (!role) {
+      return null;
+    }
+
+    return role as UserRole;
+  } catch (error) {
+    console.error('Erro ao obter role do usuário:', error);
+    return null;
+  }
+};
 
 export const isAuthenticated = (): boolean => {
   try {

@@ -18,6 +18,7 @@ import { UserRole } from '../lib/auth';
 interface DecodedToken {
   exp: number;
   iss: string;
+  role: UserRole;
 }
 
 interface LoginForm {
@@ -96,6 +97,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
 
         const decodedToken = jwtDecode(token) as DecodedToken;
+        const { role } = decodedToken;
+        console.log(role);
+
+        setCookie(undefined, 'panopty-role', role, {
+          maxAge: 60 * 60 * 24, // 24 hours
+        });
+        setUserRole(role);
+
+        setCookie(undefined, 'panopty-token', token, {
+          maxAge: 60 * 60 * 24, // 24 hours
+        });
+
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+        setAuthenticated(true);
 
         if (decodedToken.exp < Date.now() / 1000) {
           throw new Error('Token expirado');
@@ -133,7 +148,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
           setAuthenticated(true);
           setUserRole(response.data.type);
 
-          router.push('/dashboard');
+          // Redireciona com base na role
+          if (response.data.type === 'cityManager') {
+            router.push('/managerView');
+          } else if (response.data.type === 'admin') {
+            router.push('/dashboard');
+          }
         } else {
           throw new Error('Tipo de usuário não autorizado');
         }

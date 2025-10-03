@@ -12,14 +12,9 @@ import { useAuth } from './AuthContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const navigationItems = [
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Diagnóstico', href: '/diagnostico' },
-  { name: 'Gestores', href: '/gestores' },
-  { name: 'Módulo tarifário', href: '/tarifario' },
-];
+const navigationItems = [{ name: 'Visão Geral', href: '/managerView' }];
 
-export function Header() {
+export function HeaderManager() {
   const { handleLogout, userRole } = useAuth();
   const pathname = usePathname();
 
@@ -30,7 +25,7 @@ export function Header() {
         <div className='flex items-center gap-4 sm:gap-8'>
           {/* Logo */}
           <div className='flex items-center gap-2'>
-            <Link href='/dashboard'>
+            <Link href='/managerView'>
               <Logo />
             </Link>
           </div>
@@ -67,7 +62,7 @@ export function Header() {
               <Button
                 variant='ghost'
                 className='flex items-center gap-2 text-gray-700'>
-                {userRole === 'admin' ? 'Administrador' : 'Gestor'}
+                Gestor Municipal
                 <ChevronDown size={16} />
               </Button>
             </DropdownMenuTrigger>

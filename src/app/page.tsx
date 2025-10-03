@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -11,6 +11,8 @@ import { Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthContext';
 import { Logo } from '@/components/ui/logo';
+import { useRouter } from 'next/navigation';
+import { isAuthenticated, getUserRole } from '@/lib/auth';
 
 const schema = yup
   .object({
@@ -30,6 +32,21 @@ interface LoginForm {
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin, authError } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Verifica se o usuário já está autenticado
+    const auth = isAuthenticated();
+    if (auth) {
+      const role = getUserRole();
+      // Redireciona com base na role
+      if (role === 'cityManager') {
+        router.push('/managerView');
+      } else if (role === 'admin') {
+        router.push('/dashboard');
+      }
+    }
+  }, [router]);
 
   const {
     register,
