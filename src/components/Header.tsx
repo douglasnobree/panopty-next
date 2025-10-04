@@ -1,5 +1,5 @@
 'use client';
-import { Bell, ChevronDown } from 'lucide-react';
+import { Bell, ChevronDown, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -11,6 +11,12 @@ import { Logo } from '@/components/ui/logo';
 import { useAuth } from './AuthContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 const navigationItems = [
   { name: 'Dashboard', href: '/dashboard' },
@@ -35,7 +41,38 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Navigation */}
+          {/* Menu Mobile */}
+          <div className='sm:hidden'>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant='ghost' size='sm' className='p-2'>
+                  <Menu size={24} className='text-muted-foreground' />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side='left' className='w-[300px] sm:w-[400px]'>
+                <SheetTitle>Menu de Navegação</SheetTitle>
+                <nav className='flex flex-col gap-4 mt-8'>
+                  {navigationItems.map((item) => {
+                    const isActive = pathname.startsWith(item.href);
+                    return (
+                      <Link
+                        href={item.href}
+                        key={item.name}
+                        className={`text-base font-medium p-2 rounded-md transition-colors ${
+                          isActive
+                            ? 'bg-primary/10 text-primary'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                        }`}>
+                        {item.name}
+                      </Link>
+                    );
+                  })}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+
+          {/* Navigation Desktop */}
           <nav className='hidden sm:flex items-center gap-4 sm:gap-8'>
             {navigationItems.map((item) => {
               const isActive = pathname.startsWith(item.href);
