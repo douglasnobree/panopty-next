@@ -40,7 +40,7 @@ const CityLamps = () => {
             </div>
             <Button
               onClick={() =>
-                router.push(`/dashboard/municipio/${id}/lampadas/calculo-qip`)
+                router.push(`/municipio/${id}/lampadas/calculo-qip`)
               }
               className='bg-[var(--blue-9)] hover:bg-[var(--blue-10)] text-white'>
               <Plus className='w-4 h-4 mr-2' />
