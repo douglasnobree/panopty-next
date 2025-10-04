@@ -27,7 +27,6 @@ export function MunicipalitiesTable({
 }: MunicipalitiesTableProps) {
   const router = useRouter();
 
-
   // Se não há dados, mostrar mensagem
   if (!cities || cities.length === 0) {
     return (
@@ -87,9 +86,12 @@ export function MunicipalitiesTable({
             </TableCell>
             <TableCell>
               {city.power_bi_dashboards_count > 0 ? (
-                <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--green-3)] text-[var(--green-12)] border border-[var(--green-12)]'>
+                <Button
+                  size='sm'
+                  className='text-xs h-7 px-2 py-0 bg-[var(--green-3)] text-[var(--green-11)] border-[var(--green-7)] hover:bg-[var(--green-4)] hover:text-[var(--green-12)]'
+                  onClick={(e) => e.stopPropagation()}>
                   Disponível
-                </span>
+                </Button>
               ) : (
                 <Button
                   size='sm'
