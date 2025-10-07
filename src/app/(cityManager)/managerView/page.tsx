@@ -22,6 +22,7 @@ const useGlobalStyles = () => {
 };
 import { Dashboard, City } from '@/lib/types';
 import { HeaderManager } from '@/components/HeaderManager';
+import { Logo } from '@/components/ui/logo';
 
 export default function CityManagerPage() {
   useGlobalStyles(); // Aplica os estilos globais
@@ -30,6 +31,7 @@ export default function CityManagerPage() {
   const [selectedDashboard, setSelectedDashboard] = useState<Dashboard | null>(
     null
   );
+  const [showIframe, setShowIframe] = useState(false);
 
   useEffect(() => {
     if (cities.length > 0 && !selectedCity) {
@@ -39,6 +41,18 @@ export default function CityManagerPage() {
       }
     }
   }, [cities, selectedCity]);
+
+  // Efeito para controlar o loading do iframe
+  useEffect(() => {
+    if (selectedDashboard) {
+      setShowIframe(false);
+      const timer = setTimeout(() => {
+        setShowIframe(true);
+      }, 5500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedDashboard]);
 
   const handleCityChange = (cityId: string) => {
     const city = cities.find((c) => c.city_id === parseInt(cityId)) || null;
@@ -83,22 +97,76 @@ export default function CityManagerPage() {
 
       <div className='flex-1 relative overflow-hidden -mt-[10px] -ml-[10px]'>
         {loading ? (
-          <p className='text-center py-8'>Carregando cidades e dashboards...</p>
+          <div className='w-full h-full flex items-center justify-center bg-gradient-to-br from-white to-slate-50'>
+            <div className='flex flex-col items-center gap-6'>
+              <div className='animate-pulse-slow'>
+                <Logo width={300} height={60} type='normal' />
+              </div>
+              <div className='flex flex-col items-center gap-2'>
+                <div className='flex gap-1.5'>
+                  <div className='w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+                  <div className='w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                  <div className='w-2 h-2 bg-primary rounded-full animate-bounce'></div>
+                </div>
+                <p className='text-sm text-muted-foreground font-medium'>
+                  Carregando cidades e dashboards...
+                </p>
+              </div>
+            </div>
+          </div>
         ) : error ? (
-          <p className='text-center text-red-500 py-8'>{error}</p>
+          <div className='w-full h-full flex items-center justify-center'>
+            <div className='flex flex-col items-center gap-4 max-w-md p-8'>
+              <div className='w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center'>
+                <svg
+                  className='w-8 h-8 text-destructive'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+                  />
+                </svg>
+              </div>
+              <div className='text-center space-y-2'>
+                <h3 className='text-lg font-semibold text-foreground'>
+                  Erro ao carregar
+                </h3>
+                <p className='text-sm text-destructive'>{error}</p>
+              </div>
+            </div>
+          </div>
         ) : (
-          <div className='w-full h-full'>
+          <div className='w-full h-full relative'>
             {selectedCity && (
               <>
                 {selectedCity.dashboards.length > 0 && selectedDashboard ? (
-                  <iframe
-                    src={selectedDashboard.dashboard_url}
-                    title={selectedDashboard.name}
-                    className='w-[100%] h-[108%] border-0'
-                    loading='lazy'
-                    allowFullScreen
-                    frameBorder='0'
-                  />
+                  <>
+                    {/* Loading overlay com logo pulsando */}
+                    <div
+                      className={`absolute inset-0 bg-white z-10 flex items-center justify-center transition-opacity duration-500 ${
+                        showIframe
+                          ? 'opacity-0 pointer-events-none'
+                          : 'opacity-100'
+                      }`}>
+                      <div className='animate-pulse-slow'>
+                        <Logo width={300} height={60} type='normal' />
+                      </div>
+                    </div>
+
+                    {/* Iframe carregando em segundo plano */}
+                    <iframe
+                      src={selectedDashboard.dashboard_url}
+                      title={selectedDashboard.name}
+                      className='w-[100%] h-[108%] border-0'
+                      loading='lazy'
+                      allowFullScreen
+                      frameBorder='0'
+                    />
+                  </>
                 ) : (
                   <p className='text-center py-8'>
                     Não há dashboards disponíveis para {selectedCity.city_name}.
