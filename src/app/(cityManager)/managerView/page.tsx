@@ -91,13 +91,16 @@ export default function CityManagerPage() {
     if (isSelectOpen || isDropdownOpen) {
       return;
     }
-    
+
     // Verifica se o mouse está saindo para o dropdown do select
     const relatedTarget = e.relatedTarget as HTMLElement;
-    if (relatedTarget?.closest('[role="listbox"]') || relatedTarget?.closest('[data-radix-select-viewport]')) {
+    if (
+      relatedTarget?.closest('[role="listbox"]') ||
+      relatedTarget?.closest('[data-radix-select-viewport]')
+    ) {
       return;
     }
-    
+
     setMenuOpen(false);
   };
 
@@ -173,26 +176,30 @@ export default function CityManagerPage() {
             : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
         onMouseLeave={handleMenuMouseLeave}>
-       <div className="relative">
+        <div className='relative'>
           <HeaderManager onDropdownOpenChange={handleDropdownOpenChange} />
           {/* Select de cidade - abaixo do header */}
-          <div className="w-full bg-white/95 backdrop-blur-sm border-t border-slate-200 shadow-md">
-            <div className="w-full px-6 py-3">
+          <div className='w-full bg-white/95 backdrop-blur-sm border-t border-slate-200 shadow-md'>
+            <div className='w-full px-6 py-3'>
               {!loading && !error && cities.length > 0 && (
-                <div className="flex items-center justify-end gap-2">
-                  <Label htmlFor="city-select" className="text-sm font-medium whitespace-nowrap">
+                <div className='flex items-center justify-end gap-2'>
+                  <Label
+                    htmlFor='city-select'
+                    className='text-sm font-medium whitespace-nowrap'>
                     Cidade:
                   </Label>
-                  <Select 
-                    value={selectedCity?.city_id.toString()} 
+                  <Select
+                    value={selectedCity?.city_id.toString()}
                     onValueChange={handleCityChange}
                     onOpenChange={setIsSelectOpen}>
-                    <SelectTrigger className="w-[280px]">
-                      <SelectValue placeholder="Selecione uma cidade" />
+                    <SelectTrigger className='w-[280px]'>
+                      <SelectValue placeholder='Selecione uma cidade' />
                     </SelectTrigger>
                     <SelectContent>
                       {cities.map((city) => (
-                        <SelectItem key={city.city_id} value={city.city_id.toString()}>
+                        <SelectItem
+                          key={city.city_id}
+                          value={city.city_id.toString()}>
                           {city.city_name} - {city.uf}
                         </SelectItem>
                       ))}
