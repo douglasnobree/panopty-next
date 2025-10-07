@@ -34,6 +34,8 @@ export default function CityManagerPage() {
   const [showIframe, setShowIframe] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (cities.length > 0 && !selectedCity) {
@@ -84,8 +86,23 @@ export default function CityManagerPage() {
     }
   };
 
-  const handleMenuMouseLeave = () => {
+  const handleMenuMouseLeave = (e: React.MouseEvent) => {
+    // Não fecha o menu se o select ou dropdown estiver aberto
+    if (isSelectOpen || isDropdownOpen) {
+      return;
+    }
+    
+    // Verifica se o mouse está saindo para o dropdown do select
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (relatedTarget?.closest('[role="listbox"]') || relatedTarget?.closest('[data-radix-select-viewport]')) {
+      return;
+    }
+    
     setMenuOpen(false);
+  };
+
+  const handleDropdownOpenChange = (open: boolean) => {
+    setIsDropdownOpen(open);
   };
 
   return (
@@ -157,7 +174,7 @@ export default function CityManagerPage() {
         }`}
         onMouseLeave={handleMenuMouseLeave}>
        <div className="relative">
-          <HeaderManager />
+          <HeaderManager onDropdownOpenChange={handleDropdownOpenChange} />
           {/* Select de cidade - abaixo do header */}
           <div className="w-full bg-white/95 backdrop-blur-sm border-t border-slate-200 shadow-md">
             <div className="w-full px-6 py-3">
@@ -166,7 +183,10 @@ export default function CityManagerPage() {
                   <Label htmlFor="city-select" className="text-sm font-medium whitespace-nowrap">
                     Cidade:
                   </Label>
-                  <Select value={selectedCity?.city_id.toString()} onValueChange={handleCityChange}>
+                  <Select 
+                    value={selectedCity?.city_id.toString()} 
+                    onValueChange={handleCityChange}
+                    onOpenChange={setIsSelectOpen}>
                     <SelectTrigger className="w-[280px]">
                       <SelectValue placeholder="Selecione uma cidade" />
                     </SelectTrigger>

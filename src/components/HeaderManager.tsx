@@ -14,7 +14,11 @@ import { usePathname } from 'next/navigation';
 
 const navigationItems = [{ name: 'Visão Geral', href: '/managerView' }];
 
-export function HeaderManager() {
+interface HeaderManagerProps {
+  onDropdownOpenChange?: (open: boolean) => void;
+}
+
+export function HeaderManager({ onDropdownOpenChange }: HeaderManagerProps) {
   const { handleLogout, userRole } = useAuth();
   const pathname = usePathname();
 
@@ -57,7 +61,7 @@ export function HeaderManager() {
             <Bell size={20} className='text-muted-foreground' />
           </Button>
 
-          <DropdownMenu>
+          <DropdownMenu onOpenChange={onDropdownOpenChange}>
             <DropdownMenuTrigger asChild>
               <Button
                 variant='ghost'
