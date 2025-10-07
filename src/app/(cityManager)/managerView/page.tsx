@@ -156,32 +156,31 @@ export default function CityManagerPage() {
             : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
         onMouseLeave={handleMenuMouseLeave}>
-        <HeaderManager />
-        <div className='w-full bg-white/95 backdrop-blur-sm shadow-lg border-b border-slate-200'>
-          <div className='max-w-7xl mx-auto px-4 py-4'>
-            {!loading && !error && cities.length > 0 && (
-              <div className='flex items-center justify-end gap-2'>
-                <Label htmlFor='city-select' className='text-sm font-medium'>
-                  Cidade:
-                </Label>
-                <Select
-                  value={selectedCity?.city_id.toString()}
-                  onValueChange={handleCityChange}>
-                  <SelectTrigger className='w-[280px]'>
-                    <SelectValue placeholder='Selecione uma cidade' />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.map((city) => (
-                      <SelectItem
-                        key={city.city_id}
-                        value={city.city_id.toString()}>
-                        {city.city_name} - {city.uf}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+       <div className="relative">
+          <HeaderManager />
+          {/* Select de cidade - abaixo do header */}
+          <div className="w-full bg-white/95 backdrop-blur-sm border-t border-slate-200 shadow-md">
+            <div className="w-full px-6 py-3">
+              {!loading && !error && cities.length > 0 && (
+                <div className="flex items-center justify-end gap-2">
+                  <Label htmlFor="city-select" className="text-sm font-medium whitespace-nowrap">
+                    Cidade:
+                  </Label>
+                  <Select value={selectedCity?.city_id.toString()} onValueChange={handleCityChange}>
+                    <SelectTrigger className="w-[280px]">
+                      <SelectValue placeholder="Selecione uma cidade" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {cities.map((city) => (
+                        <SelectItem key={city.city_id} value={city.city_id.toString()}>
+                          {city.city_name} - {city.uf}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
